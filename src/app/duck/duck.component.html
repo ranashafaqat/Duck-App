@@ -1,0 +1,52 @@
+<div>
+  <br/>
+  <label>
+    Id
+  </label>
+  <input type="number" disabled [(ngModel)]="duck.id"> 
+  <br/>
+  <label>
+    Name
+  </label>
+  <input type="text" disabled [(ngModel)]="duck.name">
+  <br/>
+  <label>
+    Swim
+  </label>
+  <input type="text" disabled [(ngModel)]="duck.swim">
+  <br/>
+  <label>
+    Fly
+  </label>
+   <mat-radio-group aria-label="Select an option" [(ngModel)]="duck.fly" style="color: black;">
+    <mat-radio-button class="radiobutton" value="I am flying with rocket power.." style="color: black;"
+      >I am flying with rocket power..</mat-radio-button
+    >
+    <mat-radio-button class="radiobutton" value="I am flying with wings.." style="color: black;"
+      >I am flying with wings..</mat-radio-button
+    >
+    <mat-radio-button class="radiobutton" value="I can't fly.." style="color: black;"
+      >I can't fly..</mat-radio-button
+    >
+  </mat-radio-group>
+  <br/>
+  <label>
+    Quack
+  </label>
+   <mat-radio-group aria-label="Select an option" [(ngModel)]="duck.quack" style="color: black;">
+    <mat-radio-button class="radiobutton" value="I quack..." style="color: black;"
+      >I quack...</mat-radio-button
+    >
+    <mat-radio-button class="radiobutton" value="I squeck..." style="color: black;"
+      >I squeck...</mat-radio-button
+    >
+    <mat-radio-button class="radiobutton" value="I can't quack..." style="color: black;"
+      >I can't quack...</mat-radio-button
+    >
+  </mat-radio-group>
+
+  <br/>
+
+  <button (click)="updateDuck()" >Update</button>
+ 
+</div>

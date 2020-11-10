@@ -1,0 +1,59 @@
+`<div>
+  <div class="container">
+    <div class="row">
+      <div class="col-1" style="background-color: rgb(237, 233, 233);">
+        <div class="row">
+          <button (click)="submitDuck('MallardDuck')">Mallard Duck</button> 
+          <button (click)="submitDuck('RedheadDuck')">Red head Duck</button> 
+          <button (click)="submitDuck('RubberDuck')">Rubber Duck</button> 
+        </div>
+      </div>
+      <div class="col-11">
+        <div>
+          <h2>Ducks</h2>
+          <div *ngIf="ducks.length">
+            <div *ngFor="let duck of ducks; index as i">
+              <div>
+                <div class="row"  *ngIf="i%2 === 0"></div>
+                <div class="col-6" style="padding: 16px;" >
+                  <img style="width: 150px; height: 150px;" src="../assets/images/MallardDuck.jpg">
+                  <button>Fly</button>
+                  <button>Quack</button>
+                </div>
+                
+              </div>
+            
+          </div>
+          <div *ngIf="!ducks.length">No Duck added</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- <h3 class="radioButton">Select Duck Type</h3>
+  <mat-radio-group aria-label="Select an option" [(ngModel)]="duck_type" style="color: black;">
+    <mat-radio-button class="radiobutton" value="MallardDuck" style="color: blue;"
+      >Mallard Duck</mat-radio-button
+    >
+    <mat-radio-button class="radiobutton" value="RedheadDuck" style="color: blue;"
+      >Red head Duck</mat-radio-button
+    >
+    <mat-radio-button class="radiobutton" value="RubberDuck" style="color: blue;"
+      >Rubber Duck</mat-radio-button
+    >
+  </mat-radio-group>
+
+  <br />
+  <button
+    type="button"
+    style="margin: 16px"
+    (click)="submitDuck()"
+    name="Add Duck"
+  >
+    Add Duck
+  </button> -->
+
+  
+</div>
+<router-outlet *ngIf="!hideBottom"></router-outlet>
+<!-- is shown if hidebotton is false -->

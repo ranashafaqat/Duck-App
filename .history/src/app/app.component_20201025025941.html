@@ -1,0 +1,40 @@
+<div>
+  <h3 class="radioButton">Duck Type</h3>
+  <mat-radio-group aria-label="Select an option" [(ngModel)]="duck_type">
+    <mat-radio-button class="radiobutton" value="MallardDuck"
+      >Mallard Duck</mat-radio-button
+    >
+    <mat-radio-button class="radiobutton" value="RedheadDuck"
+      >Red head Duck</mat-radio-button
+    >
+    <mat-radio-button class="radiobutton" value="RubberDuck"
+      >Rubber Duck</mat-radio-button
+    >
+  </mat-radio-group>
+
+  <input type="button" (click)="" />
+
+  <div>
+    <h2>Ducks</h2>
+    <div *ngIf="ducks.length">
+      <table>
+        <thead>
+          <tr class="row">
+            <td>Name</td>
+            <td>Fly Type</td>
+            <td>Quack Type</td>
+            <td>Swim</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let duck of ducks">
+            <td>{{ duck.name }}</td>
+            <td>{{ duck.fly }}</td>
+            <td>{{ duck.quack }}</td>
+            <td>{{ duck.swim }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

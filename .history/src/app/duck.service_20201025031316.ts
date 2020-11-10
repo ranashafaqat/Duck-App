@@ -1,0 +1,28 @@
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { from, Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { DuckModel } from "./duck-model";
+
+@Injectable({
+  providedIn: "root",
+})
+export class DuckService {
+  constructor(private http: HttpClient) {}
+
+  getAllDucks(): Observable<DuckModel[]> {
+    return this.http.get<any>("localhost:8080/api/duck/all").pipe(
+      map((response) => {
+        return response.map((duck) => new DuckModel(duck));
+      })
+    );
+  }
+
+  saveDuck(duck: DuckModel): Observable<any> {
+    return this.http.post<any>("localhost:8080/api/duck", duck).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
+}
