@@ -9,6 +9,7 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { DuckService } from "./duck.service";
 import { HttpClientModule } from "@angular/common/http";
 import { DuckComponent } from './duck/duck.component';
+import { MatGridList, MatGridListModule, MatGridTile } from '@angular/material';
 
 @NgModule({
   declarations: [AppComponent, DuckComponent],
@@ -18,7 +19,8 @@ import { DuckComponent } from './duck/duck.component';
     NoopAnimationsModule,
     MatRadioModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatGridListModule
   ],
   providers: [DuckService],
   bootstrap: [AppComponent],

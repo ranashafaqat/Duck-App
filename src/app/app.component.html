@@ -12,16 +12,20 @@
         <div>
           <h2>Ducks</h2>
           <div *ngIf="ducks.length">
-            <div *ngFor="let duck of ducks; index as i">
-              <div>
-                <div class="row"  *ngIf="i%2 === 0"></div>
-                <div class="col-6" style="padding: 16px;" >
-                  <img style="width: 150px; height: 150px;" src="../assets/images/MallardDuck.jpg">
-                  <button>Fly</button>
-                  <button>Quack</button>
+            <mat-grid-list cols="2" rowHeight="2:1">
+              <div *ngFor="let duck of ducks; index as i">
+              <mat-grid-tile >
+                <div class="item" style="padding: 16px;" >
+                  <h3>{{duck.getName()}}</h3>
+                  <img style="width: 150px; height: 150px;" [src]="duck.isFlying() ? duck.getFlyGifImage() : duck.getImage()">
+                  <div style = "display: inline-flex;">
+                  <button (click)="setFly(duck)">Fly</button>
+                  <button (click)="setQuack(duck)">Quack</button>
+                  </div>
                 </div>
-                
-              </div>
+              </mat-grid-tile>
+            </div>
+            </mat-grid-list>
             
           </div>
           <div *ngIf="!ducks.length">No Duck added</div>

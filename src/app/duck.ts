@@ -11,4 +11,9 @@ export interface Duck {
     getFly();
     getSwim();
     getQuack();
+    getFlyGifImage();
+    getImage();
+    getSound();
+    isFlying();
+    setFlying(fly: boolean);
 }

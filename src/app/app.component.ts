@@ -59,4 +59,20 @@ export class AppComponent implements OnInit {
     this.hideBottom = false;
     this.duckService.pushDuck(duck);
   }
+
+  setFly(duck: Duck) {
+    duck.setFlying(true);
+  }
+
+  playAudio(audioSource: string){
+    console.log(audioSource);
+    let audio = new Audio();
+    audio.src = audioSource;
+    audio.load();
+    audio.play();
+  }
+  
+  setQuack(duck: Duck) {
+    this.playAudio(duck.getSound());
+  }
 }
