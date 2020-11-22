@@ -39,6 +39,23 @@ export class DuckService {
     );
   }
 
+  addDuckLayout(): Observable<any> {
+    return this.http.post<any>("http://localhost:8080/api/duck/layout", {}).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
+
+  addDuckChild(duck: Duck): Observable<any> {
+    return this.http.post<any>("http://localhost:8080/api/duck/" + duck.getId() + "/child", duck).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
+
+
   deleteDuck(duckId: number): Observable<any> {
     return this.http.delete<any>("http://localhost:8080/api/duck/" + duckId).pipe(
       map((response) => {

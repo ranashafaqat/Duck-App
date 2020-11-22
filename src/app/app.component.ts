@@ -56,6 +56,7 @@ export class AppComponent implements OnInit {
   }
 
   editDuck(duck: Duck) {
+    this.router.navigate(['duck', duck.getId()])
     this.hideBottom = false;
     this.duckService.pushDuck(duck);
   }
@@ -74,5 +75,9 @@ export class AppComponent implements OnInit {
   
   setQuack(duck: Duck) {
     this.playAudio(duck.getSound());
+  }
+
+  addGrid() {
+    this.duckService.addDuckLayout().subscribe(added => this.getAllDucks());
   }
 }

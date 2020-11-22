@@ -7,10 +7,13 @@ export class DuckModel implements Duck{
   quack: string;
   swim: string;
   isFlyingDuck: boolean;
+  ducks: Duck[]
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
   }
+ 
+  
   getId() {
     return this.id;
   }
@@ -62,5 +65,13 @@ export class DuckModel implements Duck{
 
   setFlying(fly: boolean) {
     this.isFlyingDuck = fly;
+  }
+
+  hasChild() {
+    return this.ducks && this.ducks.length;
+  }
+
+  getChilds() {
+    return this.ducks.map(duck => new DuckModel(duck));
   }
 }

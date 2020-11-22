@@ -16,4 +16,6 @@ export interface Duck {
     getSound();
     isFlying();
     setFlying(fly: boolean);
+    hasChild();
+    getChilds();
 }

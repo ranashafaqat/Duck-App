@@ -1,11 +1,11 @@
-`<div>
-  <div class="container">
+ <div class="container">
     <div class="row">
       <div class="col-1" style="background-color: rgb(237, 233, 233);">
         <div class="row">
           <button (click)="submitDuck('MallardDuck')">Mallard Duck</button> 
           <button (click)="submitDuck('RedheadDuck')">Red head Duck</button> 
           <button (click)="submitDuck('RubberDuck')">Rubber Duck</button> 
+          <button (click)="addGrid()">Grid Layout</button> 
         </div>
       </div>
       <div class="col-11">
@@ -15,14 +15,39 @@
             <mat-grid-list cols="2" rowHeight="2:1">
               <div *ngFor="let duck of ducks; index as i">
               <mat-grid-tile >
-                <div class="item" style="padding: 16px;" >
+                <div class="item" style="padding: 16px;" *ngIf = "!duck.hasChild()">
                   <h3>{{duck.getName()}}</h3>
-                  <img style="width: 150px; height: 150px;" [src]="duck.isFlying() ? duck.getFlyGifImage() : duck.getImage()">
                   <div style = "display: inline-flex;">
-                  <button (click)="setFly(duck)">Fly</button>
-                  <button (click)="setQuack(duck)">Quack</button>
+                    <button (click)="deleteDuck(duck.getId())">Delete</button>
+                    <button (click)="editDuck(duck)">Edit</button>
+                  </div>
+                  <div >
+                    <img style="width: 150px; height: 150px;" [src]="duck.isFlying() ? duck.getFlyGifImage() : duck.getImage()">
+                    <div style = "display: inline-flex;">
+                      <button (click)="setFly(duck)">Fly</button>
+                      <button (click)="setQuack(duck)">Quack</button>
+                    </div>
                   </div>
                 </div>
+                  <div *ngIf="duck.hasChild()" style="    width: 500px;
+                  height: 200px;">
+                    <mat-grid-list cols="2" rowHeight="2:1">
+                      
+                      <div *ngFor="let duckChild of duck.getChilds(); index as i">
+                        <mat-grid-tile  >
+                          <div class="item" >
+                            <h6>{{duckChild.getName()}}</h6>
+                              <img style="width: 50px; height: 50px;" [src]="duckChild.isFlying() ? duckChild.getFlyGifImage() : duckChild.getImage()">
+                              <div style = "display: inline-flex;">
+                                <button (click)="setFly(duckChild)">Fly</button>
+                                <button (click)="setQuack(duckChild)">Quack</button>
+                              </div>
+                            </div>
+                        </mat-grid-tile>   
+                      </div>      
+                    </mat-grid-list>
+                  </div>
+              
               </mat-grid-tile>
             </div>
             </mat-grid-list>
@@ -32,32 +57,8 @@
         </div>
       </div>
       
-    </div>
+    
   </div>
-  <!-- <h3 class="radioButton">Select Duck Type</h3>
-  <mat-radio-group aria-label="Select an option" [(ngModel)]="duck_type" style="color: black;">
-    <mat-radio-button class="radiobutton" value="MallardDuck" style="color: blue;"
-      >Mallard Duck</mat-radio-button
-    >
-    <mat-radio-button class="radiobutton" value="RedheadDuck" style="color: blue;"
-      >Red head Duck</mat-radio-button
-    >
-    <mat-radio-button class="radiobutton" value="RubberDuck" style="color: blue;"
-      >Rubber Duck</mat-radio-button
-    >
-  </mat-radio-group>
-
-  <br />
-  <button
-    type="button"
-    style="margin: 16px"
-    (click)="submitDuck()"
-    name="Add Duck"
-  >
-    Add Duck
-  </button> -->
-
-  
 </div>
 <router-outlet *ngIf="!hideBottom"></router-outlet>
 <!-- is shown if hidebotton is false -->

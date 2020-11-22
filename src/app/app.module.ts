@@ -10,9 +10,10 @@ import { DuckService } from "./duck.service";
 import { HttpClientModule } from "@angular/common/http";
 import { DuckComponent } from './duck/duck.component';
 import { MatGridList, MatGridListModule, MatGridTile } from '@angular/material';
+import { DuckListComponent } from './duck-list/duck-list.component';
 
 @NgModule({
-  declarations: [AppComponent, DuckComponent],
+  declarations: [AppComponent, DuckComponent, DuckListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
