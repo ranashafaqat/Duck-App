@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   duckModel: Duck = new DuckModel();
   ducks: Duck[] = [];
   hideBottom = true;
+  duckChildType: string;
 
   title = "Duck-App";
 
@@ -66,7 +67,6 @@ export class AppComponent implements OnInit {
   }
 
   playAudio(audioSource: string){
-    console.log(audioSource);
     let audio = new Audio();
     audio.src = audioSource;
     audio.load();
@@ -77,7 +77,16 @@ export class AppComponent implements OnInit {
     this.playAudio(duck.getSound());
   }
 
+
+
   addGrid() {
     this.duckService.addDuckLayout().subscribe(added => this.getAllDucks());
+  }
+
+  addDuckChild(duckId: number, duckType: string) {
+    
+    const duck: Duck = new DuckModel();
+    duck.name = duckType;
+    this.duckService.addDuckChild(duckId, duck).subscribe(added => this.getAllDucks());
   }
 }

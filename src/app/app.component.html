@@ -29,14 +29,18 @@
                     </div>
                   </div>
                 </div>
-                  <div *ngIf="duck.hasChild()" style="    width: 500px;
-                  height: 200px;">
+                  <div *ngIf="duck.hasChild()" style="width: 500px;
+                  height: 300px;">
                     <mat-grid-list cols="2" rowHeight="2:1">
                       
                       <div *ngFor="let duckChild of duck.getChilds(); index as i">
                         <mat-grid-tile  >
-                          <div class="item" >
-                            <h6>{{duckChild.getName()}}</h6>
+                          <div class="itemChild" style="padding-top: 10%;">
+                            <h6>{{duckChild.getName()}} {{duckChild.isFlying()}}</h6>
+                            <div style = "display: inline-flex;">
+                              <button (click)="deleteDuck(duckChild.getId())">Delete</button>
+                              <button (click)="editDuck(duckChild)">Edit</button>
+                            </div>
                               <img style="width: 50px; height: 50px;" [src]="duckChild.isFlying() ? duckChild.getFlyGifImage() : duckChild.getImage()">
                               <div style = "display: inline-flex;">
                                 <button (click)="setFly(duckChild)">Fly</button>
@@ -44,8 +48,15 @@
                               </div>
                             </div>
                         </mat-grid-tile>   
-                      </div>      
+                      </div> 
+                        
                     </mat-grid-list>
+                    <select *ngIf="duck.getChilds().length < 4" (change)="addDuckChild(duck.getId(), $event.target.value)">
+                      <option style="color: lightgray;">Add Duck</option>
+                      <option value = "MallardDuck">Mallard Duck</option>
+                      <option value = "RedheadDuck">Red head Duck</option>
+                      <option value = "RubberDuck">Rubber Duck</option>
+                    </select>  
                   </div>
               
               </mat-grid-tile>

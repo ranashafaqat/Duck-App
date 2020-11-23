@@ -5,3 +5,7 @@
   display: inline-grid;
   align-items: center;
 }
+.itemChild {
+  display: block;
+  align-items: center;
+}

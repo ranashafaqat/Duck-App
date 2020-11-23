@@ -47,8 +47,8 @@ export class DuckService {
     );
   }
 
-  addDuckChild(duck: Duck): Observable<any> {
-    return this.http.post<any>("http://localhost:8080/api/duck/" + duck.getId() + "/child", duck).pipe(
+  addDuckChild(duckId: number, duck: Duck): Observable<any> {
+    return this.http.post<any>("http://localhost:8080/api/duck/" + duckId + "/child", duck).pipe(
       map((response) => {
         return response;
       })
