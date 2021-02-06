@@ -4,6 +4,8 @@ import { from, Observable, Subject } from "rxjs";
 import { map } from "rxjs/operators";
 import { Duck } from './duck';
 import { DuckModel } from "./duck-model";
+import { LastActionModel } from './last-action-model';
+import { LastActions } from './last-actions';
 
 @Injectable({
   providedIn: "root",
@@ -68,6 +70,22 @@ export class DuckService {
     return this.http.put<any>("http://localhost:8080/api/duck/" + duck.getId(), duck).pipe(
       map((response) => {
         return response;
+      })
+    );
+  }
+
+  getLastActions(): Observable<LastActions> {
+    return this.http.get<any>("http://localhost:8080/api/duck/actions").pipe(
+      map((response) => {
+        return new LastActionModel(response);
+      })
+    );
+  }
+
+  implementAction(actionType: String): Observable<Duck[]> {
+    return this.http.put<any>("http://localhost:8080/api/duck/actions/" + actionType, {}).pipe(
+      map((response) => {
+        return response.map((duck) => new DuckModel(duck));
       })
     );
   }

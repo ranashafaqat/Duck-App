@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Duck } from './duck';
 import { DuckModel } from "./duck-model";
 import { DuckService } from "./duck.service";
+import { LastActions } from './last-actions';
 
 @Component({
   selector: "app-root",
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit {
   ducks: Duck[] = [];
   hideBottom = true;
   duckChildType: string;
+  lastActions: LastActions;
 
   title = "Duck-App";
 
@@ -33,6 +35,7 @@ export class AppComponent implements OnInit {
   getAllDucks() {
     this.duckService.getAllDucks().subscribe((ducks) => {
       this.ducks = ducks;
+      this.getLastActions();
     });
   }
 
@@ -88,5 +91,23 @@ export class AppComponent implements OnInit {
     const duck: Duck = new DuckModel();
     duck.name = duckType;
     this.duckService.addDuckChild(duckId, duck).subscribe(added => this.getAllDucks());
+  }
+
+  updateDuckShape(duck: Duck) {
+    duck.setShapeLevel();
+    this.duckService.updateDuck(duck).subscribe(dk => {this.getAllDucks()});    
+  }
+
+  implementAction(actonType: String) {
+    this.duckService.implementAction(actonType).subscribe(ducks => {
+      this.ducks = ducks;
+      this.getLastActions();
+    });
+  }
+
+  getLastActions() {
+    this.duckService.getLastActions().subscribe(actions => {
+        this.lastActions = actions;
+    });
   }
 }

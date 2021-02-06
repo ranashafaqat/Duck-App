@@ -9,3 +9,12 @@
   display: block;
   align-items: center;
 }
+.borderOne {
+  border: 5px solid #555;
+}
+.borderTwo {
+  border: 5px solid cyan;
+}
+.borderThree {
+  border: 5px solid red;
+}

@@ -11,6 +11,10 @@
       <div class="col-11">
         <div>
           <h2>Ducks</h2>
+          <div style="display: inline-flex;">
+            <button [disabled]="!lastActions.canPerformUndo()" (click)= "implementAction('undo')">Undo</button>
+            <button [disabled]="!lastActions.canPerformRedo()" (click)= "implementAction('redo')">Redo</button>
+          </div>
           <div *ngIf="ducks.length">
             <mat-grid-list cols="2" rowHeight="2:1">
               <div *ngFor="let duck of ducks; index as i">
@@ -22,10 +26,18 @@
                     <button (click)="editDuck(duck)">Edit</button>
                   </div>
                   <div >
-                    <img style="width: 150px; height: 150px;" [src]="duck.isFlying() ? duck.getFlyGifImage() : duck.getImage()">
+                  <div [ngClass]="{'borderThree': duck.getShapeLevel() >= 3}">
+                    <div [ngClass]="{'borderTwo': duck.getShapeLevel() >= 2}">
+                      <div [ngClass]="{'borderOne': duck.getShapeLevel() >= 1}">
+                        <img style="width: 170px; height: 120px;" [src]="duck.isFlying() ? duck.getFlyGifImage() : duck.getImage()">
+                      </div>
+                    </div>
+                    </div>
+                    
                     <div style = "display: inline-flex;">
                       <button (click)="setFly(duck)">Fly</button>
                       <button (click)="setQuack(duck)">Quack</button>
+                      <button *ngIf="duck.getShapeLevel() < 3" (click)="updateDuckShape(duck)">Draw Recangle</button>
                     </div>
                   </div>
                 </div>
@@ -41,10 +53,17 @@
                               <button (click)="deleteDuck(duckChild.getId())">Delete</button>
                               <button (click)="editDuck(duckChild)">Edit</button>
                             </div>
-                              <img style="width: 50px; height: 50px;" [src]="duckChild.isFlying() ? duckChild.getFlyGifImage() : duckChild.getImage()">
+                            <div [ngClass]="{'borderThree': duckChild.getShapeLevel() >= 3}">
+                              <div [ngClass]="{'borderTwo': duckChild.getShapeLevel() >= 2}">
+                                <div [ngClass]="{'borderOne': duckChild.getShapeLevel() >= 1}">
+                                        <img style="width: 80px; height: 40px;" [src]="duckChild.isFlying() ? duckChild.getFlyGifImage() : duckChild.getImage()">
+                              </div>
+                              </div>
+                            </div>
                               <div style = "display: inline-flex;">
                                 <button (click)="setFly(duckChild)">Fly</button>
                                 <button (click)="setQuack(duckChild)">Quack</button>
+                                <button *ngIf="duckChild.getShapeLevel() < 3" (click)="updateDuckShape(duckChild)">Draw Recangle</button>
                               </div>
                             </div>
                         </mat-grid-tile>   

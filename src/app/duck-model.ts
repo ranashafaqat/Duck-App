@@ -7,7 +7,8 @@ export class DuckModel implements Duck{
   quack: string;
   swim: string;
   isFlyingDuck: boolean;
-  ducks: Duck[]
+  ducks: Duck[];
+  shapeLevel: number;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
@@ -73,5 +74,15 @@ export class DuckModel implements Duck{
 
   getChilds() {
     return this.ducks.map(duck => new DuckModel(duck));
+  }
+
+  setShapeLevel() {
+    if (this.shapeLevel < 3) {
+      this.shapeLevel++;
+    }
+  }
+
+  getShapeLevel(){
+    return this.shapeLevel ? this.shapeLevel : 0;
   }
 }

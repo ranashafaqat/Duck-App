@@ -18,4 +18,6 @@ export interface Duck {
     setFlying(fly: boolean);
     hasChild();
     getChilds();
+    setShapeLevel();
+    getShapeLevel();
 }
