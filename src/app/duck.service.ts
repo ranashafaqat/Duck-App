@@ -57,6 +57,14 @@ export class DuckService {
     );
   }
 
+  clearDuckList(): Observable<any> {
+    return this.http.put<any>("http://localhost:8080/api/duck/new/list","").pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
+
 
   deleteDuck(duckId: number): Observable<any> {
     return this.http.delete<any>("http://localhost:8080/api/duck/" + duckId).pipe(

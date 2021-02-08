@@ -17,13 +17,17 @@ export class AppComponent implements OnInit {
   hideBottom = true;
   duckChildType: string;
   lastActions: LastActions;
+  isDucksVisible: boolean;
 
   title = "Duck-App";
 
   constructor(private duckService: DuckService,
-    private router: Router) {}
+    private router: Router) {
+      
+    }
 
   ngOnInit(): void {
+    
     this.getAllDucks();
 
     this.duckService.pullHideDetail().subscribe(hide => {
@@ -33,6 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   getAllDucks() {
+    this.isDucksVisible = true;
     this.duckService.getAllDucks().subscribe((ducks) => {
       this.ducks = ducks;
       this.getLastActions();
@@ -110,4 +115,17 @@ export class AppComponent implements OnInit {
         this.lastActions = actions;
     });
   }
+
+  createNewList() {
+    this.duckService.clearDuckList().subscribe(action => {
+        this.ducks = [];
+    });
+  }
+
+  hideDucks() {
+    this.ducks = [];
+    this.isDucksVisible = false;
+  }
+
+
 }
