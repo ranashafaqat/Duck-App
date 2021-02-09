@@ -122,7 +122,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  hideDucks() {
+  removeDucks() {
     this.ducks = [];
     this.isDucksVisible = false;
   }
