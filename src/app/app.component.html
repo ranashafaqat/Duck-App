@@ -11,7 +11,7 @@
       <div class="col-11">
         <div>
           <h2>Ducks</h2>
-          <div class="row" *ngIf="ducks.length" style="padding: 5px;">
+          <div class="row"  style="padding: 5px;">
             <button *ngIf= "isDucksVisible" (click)= "hideDucks()">Save State</button>
             <button *ngIf= "!isDucksVisible" (click)= "getAllDucks()">Load State</button>
             <!-- <button  (click)= "createNewList()">Remove All</button> -->
